@@ -1,0 +1,50 @@
+JSON - Notação de objeto na linguagem javascript.
+Cada objeto tem a sua própria notação JSON. Por exemplo, podemos criar um arquivo chamado user.json para ser o objeto usuário.
+Precisamos de uma forma de mandar objetos para o banco de dados e recuperá-los depois.
+
+Cada JSON se refere à apenas 1 objeto. Dentro desse objeto podemos colocar strings, ints, floats, booleans, nulls, array dos tipos anteriores e objetos. Também é possível fazer um array de objetos.
+Um array se declara assim: ["String1","String2","String3"]
+Um objeto se declara assim: {"String":"String","Int":1,"Bool":true}
+
+Podemos fazer um array de objetos dentro da declaração JSON. Tipo assim:
+
+#objetos.json
+[
+    {
+        "name":"nome1",
+        "numero":1
+    }
+
+    {
+        "name":"nome2",
+        "numero":2
+    }
+]
+
+
+*Decodificando JSON em SWIFT:
+Primeiro de tudo: É possível representar Strings com múltiplas linhas em SWIFT utilizando aspas triplas """. Isso captura as strings com os /n
+
+exemplo de um objeto que utiliza JSON em Swift:
+
+let person1JSON = """
+    "name": "Mary"
+    "age": 31
+    "gender": "Female"
+    "sign": "Leo"
+    "partner": "Joseph"
+    "isEmployed": True
+"""
+
+struct Person: Decodable {
+    let name: String
+    let age: Int
+    let gender: String
+    let sign: String
+    let Partner: String
+    let isEmployed: Bool
+}
+
+let decoder = JSONDecoder()
+let person1JSONData = person1JSON.data(using: .utf8)!
+
